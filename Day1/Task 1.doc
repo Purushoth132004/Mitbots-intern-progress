@@ -1,0 +1,21 @@
+What are Sematic Tags?
+    Sematic Tags are used to built the web page in an organized way. They give better understanding to 
+    humans as well as machine compared to div and span. Some of the tags are 
+    header - indicates the top section 
+    footer - indicates the bottom section
+    aside - indicates the side bar 
+    main - contains the main content 
+    section - the contents of main are divided into diffenent sections
+
+What is div? 
+    Using div it is possible to create structure for other tags 
+    without div it is difficult to split the tags into separate components
+    The primary use of div is acts a container and has a block-level scope
+
+    Common uses are 
+        Involves in grouping of tags
+        It creates layout for using CSS
+
+    As mentioned Earlier, The div tag does not have any meaning whereas sematic tags have defined meaning
+    which is understable by humans as well as machines 
+

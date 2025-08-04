@@ -1,13 +1,13 @@
-What are Sematic Tags?
+1.What are Sematic Tags?
     Sematic Tags are used to built the web page in an organized way. They give better understanding to 
     humans as well as machine compared to div and span. Some of the tags are 
     header - indicates the top section 
     footer - indicates the bottom section
     aside - indicates the side bar 
     main - contains the main content 
-    section - the contents of main are divided into diffenent sections
+    section - the contents of main are divided into different sections
 
-What is div? 
+2.What is div? 
     Using div it is possible to create structure for other tags 
     without div it is difficult to split the tags into separate components
     The primary use of div is acts a container and has a block-level scope
@@ -17,5 +17,41 @@ What is div?
         It creates layout for using CSS
 
     As mentioned Earlier, The div tag does not have any meaning whereas sematic tags have defined meaning
-    which is understable by humans as well as machines 
+    which is understandable by humans as well as machines     
 
+3. Responsiveness in CSS
+           Responsiveness means the website should work for all the screen sizes from desktop to mobiles. It can be achieved by using relative units like %,em etc….
+           Media queries will be responsible for making the webpage responsive 
+
+4. Positioning in CSS
+             This prosperity specifies the type of positioning of  a element 
+	  
+	Few Types are 
+		→ Static
+		→ Relative 
+		→ Absolute 
+		→ Fixed
+		→ Sticky
+
+	Static  - Default position type 
+	Relative - Can modify the element using left or right , up or down 
+		Note: Either of them will only work 
+	
+            Absolute - Unlike relative, The absolute removes the element from the document flow and places it relatively to the next parent . It is possible to place anywhere in the webpage 
+Sticky - It sticks the content to a webpage. While scrolling the sticked content will not move 
+
+Fixed - This property does not allow the content to move . If scrolled the element will not move
+
+
+What is a Flex Box ?
+	The flex box has a property which is used to arrange elements in the container in an easy way. To use this we should set the display property to flex . The flex has few important property .This makes the webpage more responsive
+
+→justify-content aligns items horizontally
+→align-items align items vertically
+→flex-direction rowwise or columnwise
+
+What is a CSS grid?
+	It compromises the drawbacks of flex , Flex is one - dimensional where as Grid is two dimensional it allows the developers to arrange row and columns
+
+
+This is just a practiced content click the below link 

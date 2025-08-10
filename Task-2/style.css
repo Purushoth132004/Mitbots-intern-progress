@@ -8,6 +8,7 @@ body{
 }
 
 #header{
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,16 +20,17 @@ body{
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  gap: 60px;
+  gap: 90px;
   margin: 100px;
 }
 
 .box{
-  height : 370px;
-  width: 490px;
+  margin-top: 25px;
+  height : 330px;
+  width: 450px;
   border-radius: 20px;
   border-top-left-radius: 63px;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.511);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.511);
  
 }
 .image-box{
@@ -36,8 +38,8 @@ body{
   justify-content: center;
   align-items: center ;
   background-color: #D7CACA;
-  height: 133px;
-  width: 153px;
+  height: 123px;
+  width: 143px;
   border-top-left-radius: 63px;
   border-bottom-left-radius: 63px;
   border-bottom-right-radius: 63px;
@@ -54,25 +56,29 @@ img{
 .content{
   display: flex;
   flex-direction: column;
-  padding: 25px;
+  padding: 0px 25px 10px 25px;
 }
 
 .content h3{
   margin: 0;
-  font-size: 40px;
+  font-size: 35px;
+  padding-top: 15px;
 
  
 }
 
 .content p{
-  font-size: 20px;
-  padding: 5px;
+  margin: 10px 0 0 0;
+  font-size: 18px;
+  width: 385px;
+  letter-spacing: 0px;
+
    
 }
 
 #header h2{
   margin: 0;
-  margin-top: 25px;
+  margin-top: 15px;
   font-size: 60px;
   text-align: center;
   width: 950px;
@@ -80,7 +86,7 @@ img{
 }
 
 #header p{
-  
+
   font-size: 30px;
   width: 800px;
   height: 74px;

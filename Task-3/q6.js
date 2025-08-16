@@ -1,5 +1,5 @@
 console.log(a); // undefined
 var a = 10;
 
-console.log(b); // ❌ ReferenceError
+console.log(b); 
 let b = 20;

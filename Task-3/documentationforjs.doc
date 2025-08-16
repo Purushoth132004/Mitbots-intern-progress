@@ -1,0 +1,191 @@
+Task - 3
+
+JavaScript Documentation 
+
+1.What is the difference between var , let and const?	
+	These are containers which is used to store the values 
+
+var 
+→ It has function scope 
+→ It can be redeclared 
+→ It can be reassigned 
+→Need not be initialized 
+
+let 
+→ It has block scope
+→It cannot be redeclared 
+→It can be reassigned 
+→Need not to be initialized
+
+const
+	→It has block scope
+	→It cannot be redeclared 
+		→It cannot be reassigned
+		→Need to be initialized 
+
+2.List all the primitive datatypes
+	→String
+	→Number
+	→Bigint
+	→Boolean 
+	→Undefined
+	→Null
+	→Symbol
+
+
+3.What is the output for console.log(typeof null) and why??
+	The output will be object because in the early days of javascript null means all the bits are  set to zero and the bits are referred as object in javascript .
+
+4.What is type coercion??
+	Converting the type of one datatype to another datatype 
+	Types of Type coercion
+	→Implicit coercion - automatically done by js
+		Eg.
+		 let a = 7;
+		let b = “hello”
+		console.log(a+b);
+      		Output : 7hello
+	→Explicit Coercion -  Manually converting to required datatype
+		Eg.
+		  let a = 8;
+		let b = string(a);
+
+5.Difference between == and === equals?
+	i) == this compares only the values not the datatype 
+	Eg 3==”3’ // true
+	ii)=== this compares both values and datatypes
+	Eg 3===”3” //false
+
+
+
+6.Explain hoisting with an example.
+	Hoisting in javascript where variable and function declarations are moved to the top of their scope
+	When a var is hoisted it results in undefined others such as let and const result in reference error 	
+
+
+7.What is a closure? Give an example.
+       A closure is a function that has access to the parent scope, after the parent function has closed.
+
+8.What is the difference between function scope and block scope?
+     Block scope = variables declared inside block are accessible only inside the block
+			let and const are block scope 
+     Function scope = variables declared inside the function are accessible throughout the function ignore the block inside functions 
+		Var is function scope
+
+9.What will be the output and why?
+console.log(a);
+var a = 10;
+console.log(b);
+let b = 20;
+
+Output : undefined  because var a is hoisted and initialized  with  undefined 
+
+Reference  Error because let b is hoisted but it stays in temporal dead zone 
+
+11.Event bubbling and Event capturing 
+
+	Event bubbling → when a event is performed it first access the child element then to parent element .
+	target→child → parent→document 
+
+	Event capturing → when an event is performed it first access the parent element then to target . It can be achieved by setting the 3rd parameter of the addEventListener function to true.
+	Document→parent→child→target
+
+12.What are Promises in JavaScript, and how are they used?
+	Promises is an object in javascript which represents the success or failure of execution code
+Basic syntax : 
+	let varname = new Promise((success,reject)=>{ 
+	//code that takes time
+	success();
+	reject();
+
+            })
+
+
+13.What is the difference between .call(), .apply(), and .bind()?
+
+	call() → an object can use a method belonging to another object.
+
+            apply() →  similar to call but while passing arguments it  takes as parameters as list
+
+	bind() → while using bind method an object can borrow a method from another object 
+
+14. What is the output and why?
+console.log([] + []);
+console.log([] + {});
+console.log({} + []);
+
+i) console.log([] + []); this gives output  as an empty string . when an empty [] is printed to the screen js converts it to primitive data types . since [].tostring gets converted to “” (empty string).
+“”+”” gives us empty string 
+
+ii) console.log([]+{}); this gives output as “[object Object]” . when {} is converted to string it gives “[object Object]”  . when string concatenation occurs “” + “[object Object]” it becomes “[object Object]”
+
+Iii) console.log({}+[]};  when {} is wrote on the starting of your js file it gets ignored and unary +[] which simply means + number(“”) which give 0
+
+15.Explain prototype chaining in JavaScript
+	In Js every object is inherited from another object  for example data inherits from date.prototype similarly for array 
+	Usually in constructed you can directly add a property but it is possible using prototype 
+
+	Prototype chaining 
+		1st it looks for object itself
+		If not present it goes one step ahead and looks for objects prototype 
+		This continues until this reached null
+
+ 16. What is the difference between for...in and for...of loops?
+   For in loop 
+	In Objects it returns the keys of values as strings
+            In Arrays it returns the index of values as strings
+ 
+   For of loop 
+	This gives the actual values of the arrays , strings (if iterable)
+
+
+17.Explain the event loop in JavaScript.
+	Js is single threaded means it can perform one task at a time 
+ 	But modern browsers need multitasking ability which can be done using event loops 
+	It handles the asynchronous tasks without blocking the main
+
+18.How does async/await work, and how is it different from .then()?
+	Async and await are the tools for handling asynchronous javascript 
+	
+	Async should be used before the function definition 	makes the function always return a value 
+           If success it returns a success promise or returns rejected 
+
+         	Await - used inside the async function
+            Makes the pause until the line of code gets executed 
+	 If success it returns a success promise or returns rejected 
+
+	.then this is used in promise to handle the asynchronous errors
+
+19.What is debouncing and throttling in JavaScript?
+
+	Debouncing - Ensures that a function runs only after a certain amount of time has passed since the last time it was triggered.Avoid calling a search API on every keystroke — instead, wait until the user stops typing
+
+	Throttling - Ensures that a function runs at most once in a specified time interval, no matter how many times the event is triggeredHandling window scroll events without firing them thousands of times per second
+
+20.What is the difference between Object.freeze() and Object.seal()?
+	
+freeze() makes the object completely immutable won't allow  to add,delete even modify the object
+
+seal() makes the object partially mutable where only modifications is possible 
+
+
+    
+
+
+	
+
+
+
+	
+	
+	
+	
+
+		
+
+
+
+ 
+
+	
+

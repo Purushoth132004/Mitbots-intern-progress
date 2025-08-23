@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple To-Do</title>
+</head>
+<body>
+  <h1>My To-Do List</h1>
+
+ 
+  <input id="taskInput" type="text" placeholder="Enter a task">
+  <button onclick="addTask()">Add</button>
+
+ 
+  <ul id="taskList"></ul>
+
+  <script>
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    showTasks();
+
+    function addTask() {
+      let input = document.getElementById("taskInput");
+      let task = input.value.trim();
+      if (task === "") return;
+      tasks.push(task);
+      input.value = "";
+      saveAndShow();
+    }
+
+    function deleteTask(index) {
+      tasks.splice(index, 1); 
+      saveAndShow();
+    }
+
+    function saveAndShow() {
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+      showTasks();
+    }
+
+    function showTasks() {
+      let list = document.getElementById("taskList");
+      list.innerHTML = "";
+      tasks.forEach((task, i) => {
+        let li = document.createElement("li");
+        li.textContent = task;
+        let delBtn = document.createElement("button");
+        let img = document.createElement("img");
+        img.src = "./download.png";
+        img.height = 16;
+        img.width = 16;
+        delBtn.appendChild(img);
+        delBtn.onclick = () => deleteTask(i);
+        li.appendChild(delBtn);
+        list.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>

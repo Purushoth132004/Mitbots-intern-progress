@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do App</title>
+</head>
+<style>
+  * {
+    margin: 0;
+  }
+  body{
+    background-color: aqua;
+  }
+  header {
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 50px;
+    box-shadow: 0px 0.3px 3px black;
+    background-color: rgb(9, 41, 203);
+  }
+  header h1 {
+    color: aliceblue;
+    margin: 4px 10px;
+  }
+  header button {
+    background-color: blue;
+    border: none;
+    margin: 0.5% 1% 1% 1%;
+    border-radius: 5px;
+    color: azure;
+    box-shadow: 1px 1px 3px rgb(16, 16, 18);
+    padding: 5px 10px;
+  }
+  #addTasks {
+    display: none;
+    flex-direction: column;
+    margin-top: 7%;
+    margin-left: 28%;
+    gap: 10px;
+    position: absolute;
+    width: 32%;
+    padding: 20px;
+    box-shadow: 0px 0px 10px black;
+    border-radius: 8px;
+    background: white;
+  }
+  #taskContainer {
+    margin: 10px 20px;
+  }
+  .task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid white;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 6px;
+    box-shadow: 0px 1px 4px rgba(0,0,0,0.2);
+    background: white;
+  }
+  .task-info {
+    display: flex;
+    flex-direction: column;
+  }
+  .removeBtn {
+    background: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  #radio-date{
+    display: flex;
+    flex-direction: row;
+    gap: 15%;
+  }
+
+  #toggle-bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding:5px;
+    background-color: aliceblue;
+
+  }
+
+  .toggle {
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.toggle.active {
+  background-color: blue;
+  color: white;
+  border-radius: 5px;
+}
+
+
+
+
+
+</style>
+<body>
+  <header>
+    <h1>TasksManager</h1>
+    <button id="create">Create</button>
+  </header>
+
+  <main id="toggle-bar">
+      <section id="Overdue" class="toggle">Overdue</section>
+      <section id="inprogress" class="toggle">In-Progress</section>
+      <section id="completed" class="toggle">Completed</section>
+  </main>
+
+  <div id="addTasks">
+    <h3>Create Task</h3>
+    <label for="text">Title : </label>
+    <input type="text" id="text">
+    <label for="desc">Description : </label>
+    <textarea id="desc" rows="4" cols="40" placeholder="Enter task details..."></textarea>
+    <div  id="radio-date">
+      <div> <label for="due">DueDate : </label>
+    <input type="date" id="due"></div>
+      <div>
+      <label for="prior"> Priority:</label>
+      <select name="" id="prior">
+      <option value="">Low</option>
+      <option value="">Medium</option>
+      <option value="">High</option>
+    </select>
+      </div>
+
+
+    </div>
+   
+    <button id="add">Add</button>
+  </div>
+
+  <div id="taskContainer"></div>
+
+<script>
+  let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+const addTasksDiv = document.getElementById("addTasks");
+const createBtn = document.getElementById("create");
+
+const overdueBtn = document.getElementById("Overdue");
+const inprogressBtn = document.getElementById("inprogress");
+const completedBtn = document.getElementById("completed");
+
+const taskContainer = document.getElementById("taskContainer");
+
+createBtn.addEventListener("click", () => {
+  addTasksDiv.style.display =
+    addTasksDiv.style.display === "none" || addTasksDiv.style.display === ""
+      ? "flex"
+      : "none";
+});
+
+function saveTasks() {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+function displayTasks(filter = "inprogress") {
+  taskContainer.innerHTML = ""; 
+  const today = new Date().toISOString().split("T")[0];
+
+  tasks.forEach((task, index) => {
+    if (task.status === "inprogress" && task.due && task.due < today) {
+      task.status = "overdue";
+    }
+
+    if (task.status !== filter) return; 
+
+    const taskDiv = document.createElement("div");
+    taskDiv.className = "task";
+
+    const info = document.createElement("div");
+    info.className = "task-info";
+    info.innerHTML = `<strong>${task.title}</strong>
+                      <p>Due: ${task.due || "No due date"}</p>
+                      <p>${task.description}</p>`;
+
+    const btns = document.createElement("div");
+
+    if (task.status !== "completed") {
+      const doneBtn = document.createElement("button");
+      doneBtn.textContent = "Done";
+      doneBtn.style.marginRight = "5px";
+      doneBtn.onclick = () => {
+        task.status = "completed";
+        saveTasks();
+        displayTasks(filter);
+      };
+      btns.appendChild(doneBtn);
+    }
+
+    const removeBtn = document.createElement("button");
+    removeBtn.textContent = "Remove";
+    removeBtn.className = "removeBtn";
+    removeBtn.onclick = () => {
+      tasks.splice(index, 1);
+      saveTasks();
+      displayTasks(filter);
+    };
+    btns.appendChild(removeBtn);
+
+    taskDiv.appendChild(info);
+    taskDiv.appendChild(btns);
+    taskContainer.appendChild(taskDiv);
+  });
+}
+
+function setActiveTab(activeId) {
+  document.querySelectorAll(".toggle").forEach(tab => {
+    tab.classList.remove("active");
+  });
+  document.getElementById(activeId).classList.add("active");
+}
+
+
+overdueBtn.addEventListener("click", () => {
+  displayTasks("overdue");
+  setActiveTab("Overdue");
+});
+inprogressBtn.addEventListener("click", () => {
+  displayTasks("inprogress");
+  setActiveTab("inprogress");
+});
+completedBtn.addEventListener("click", () => {
+  displayTasks("completed");
+  setActiveTab("completed");
+});
+
+
+document.getElementById("add").addEventListener("click", () => {
+  const title = document.getElementById("text").value.trim();
+  const due = document.getElementById("due").value;
+  const desc = document.getElementById("desc").value.trim();
+
+  if (!title) {
+    alert("Please enter a task title");
+    return;
+  }
+
+  const task = { title, due, description: desc, status: "inprogress" };
+  tasks.push(task);
+  saveTasks();
+  displayTasks("inprogress");
+
+  document.getElementById("text").value = "";
+  document.getElementById("due").value = "";
+  document.getElementById("desc").value = "";
+  addTasksDiv.style.display = "none";
+});
+
+
+displayTasks("inprogress");
+
+</script>
+
+</body>
+</html>

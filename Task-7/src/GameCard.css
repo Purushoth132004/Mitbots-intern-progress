@@ -1,0 +1,31 @@
+.game-card {
+  background: #1f1f1f;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s;
+}
+
+.game-card:hover {
+  transform: translateY(-8px);
+}
+
+.game-card h2 {
+  margin-bottom: 15px;
+  color: #ffcc00;
+}
+
+.game-card button {
+  background: #ffcc00;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.game-card button:hover {
+  background: #ffaa00;
+}

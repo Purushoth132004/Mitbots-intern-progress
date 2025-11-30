@@ -1,0 +1,129 @@
+React Basics – Documentation
+1. What is React?
+React is a JavaScript library used for building user interfaces, mainly for single-page applications.
+Created by Facebook, it allows developers to build reusable UI components.
+
+2. Setting Up React
+Method 1: Using Create React App (CRA)
+npx create-react-app my-app
+cd my-app
+npm start
+
+Method 2: Using Vite (Faster & Modern)
+npm create vite@latest my-app --template react
+cd my-app
+npm install
+npm run dev
+
+3. React Components
+Components are the building blocks of a React app.
+
+Types:
+Function Components (Modern & recommended)
+
+Class Components
+
+3.1 Function Component Example
+function Welcome() {
+  return <h1>Hello React!</h1>;
+}
+
+export default Welcome;
+3.2 Class Component Example
+class Welcome extends React.Component {
+  render() {
+    return <h1>Hello React!</h1>;
+  }
+}
+
+
+4. JSX (JavaScript XML)
+JSX allows you to write HTML inside JavaScript.
+
+Example:
+const element = <h1>Welcome to React</h1>;
+Rules of JSX:
+Must return single parent element
+
+Use className instead of class
+
+Use {} to include JavaScript expressions
+
+Example:
+
+const name = "Purushoth";
+return <h2>Hello {name}</h2>;
+
+
+5. Props (Component Inputs)
+Props are used to send data to components.
+
+Example:
+function Greeting(props) {
+  return <h1>Hello {props.name}</h1>;
+}
+
+<Greeting name="Purushoth" />
+
+
+6. State (Component Data)
+State is data that changes over time.
+
+Using useState Hook:
+import { useState } from "react";
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <>
+      <h2>Count: {count}</h2>
+      <button onClick={() => setCount(count + 1)}>Increase</button>
+    </>
+  );
+}
+
+
+7. Event Handling
+React uses camelCase for events.
+
+<button onClick={handleClick}>Click Me</button>
+
+function handleClick() {
+  alert("Button clicked!");
+}
+
+
+8. Conditional Rendering
+Using if:
+if (loggedIn) return <Dashboard />;
+else return <Login />;
+Using ternary:
+{loggedIn ? <Dashboard /> : <Login />}
+
+
+9. Lists & Keys
+Example:
+const items = ["Apple", "Orange", "Banana"];
+
+return (
+  <ul>
+    {items.map((item, index) => (
+      <li key={index}>{item}</li>
+    ))}
+  </ul>
+);
+Keys help React identify elements in a list.
+
+10. useEffect Hook
+Used for:
+API calls
+Timers
+Subscriptions
+Example:
+import { useEffect } from "react";
+useEffect(() => {
+  console.log("Component mounted");
+}, []);
+
+

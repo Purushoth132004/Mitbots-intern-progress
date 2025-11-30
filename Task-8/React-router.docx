@@ -1,0 +1,101 @@
+React Router Documentation
+
+1.What is react-router?
+React Router is a standard library for routing in React applications. It enables navigation among different components, changing the browser URL, and keeping the UI in sync with the URL.
+
+2. Key Concepts
+a. Router
+A router component wraps your entire application and enables routing features.
+
+b. Routes
+A container for all route definitions.
+
+c. Route
+Defines a path and the component to render.
+
+d. Link / NavLink
+Used for navigation between pages without full reload.
+
+e. useNavigate
+A hook for programmatic navigation.
+
+f. useParams
+A hook to extract URL parameters.
+
+3. Installation
+npm install react-router-dom
+
+4. Basic Setup
+
+
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './Home';
+import About from './About';
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+export default App;
+
+5. Navigation
+Using Link
+
+import { Link } from 'react-router-dom';
+<Link to="/about">Go to About</Link>
+
+
+Using NavLink (with active styling)
+<NavLink to="/about" className={({ isActive }) => isActive ? 'active' : ''}>
+  About
+</NavLink>
+
+6. URL Parameters
+<Route path="/user/:id" element={<User />} />
+
+Extracting params:
+import { useParams } from 'react-router-dom';
+
+function User() {
+  const { id } = useParams();
+  return <h1>User ID: {id}</h1>;
+}
+
+7. Programmatic Navigation
+import { useNavigate } from 'react-router-dom';
+const navigate = useNavigate();
+navigate('/dashboard');
+
+8. Nested Routes
+<Route path="dashboard" element={<Dashboard />}>
+  <Route path="stats" element={<Stats />} />
+</Route>
+
+Render child route with `Outlet`:
+import { Outlet } from 'react-router-dom';
+
+function Dashboard() {
+  return (
+    <div>
+      <h2>Dashboard</h2>
+      <Outlet />
+    </div>
+  );
+}
+
+9. Protected Routes
+function Protected({ children }) {
+  const isAuth = localStorage.getItem('token');
+  return isAuth ? children : <Navigate to="/login" />;
+}
+
+<Route path="/profile" element={<Protected><Profile /></Protected>} />
+
+10. Error or Not Found Page
+<Route path="*" element={<NotFound />} />
